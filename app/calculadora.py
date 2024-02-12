@@ -24,7 +24,7 @@ from .calculador import Calculador
 class Calculadora(object):
     LANG = {
         "pt": {"exit": "Sair", "Config": "Configuraçaõ","Title": "Calculadora Tk","Them": "Tema", "Language": "Linguagem"},
-        "fr": {"exit": "Sortir","Config": "Configuration","Title": "Calculatrice Tk","Them": "Theme", "Language": "Langue"},
+        "fr": {"exit": "Sortir","Config": "Configuration","Title": "Calculatrice Tk","Them": "Apparence", "Language": "Langue"},
         "en": {"exit": "Exit", "Config": "Setting", "Title": "Calculator Tk","Them": "Theme", "Language": "Language"},
     }
     """Classe para criação do layout da calculadora, distribuição dos botões
