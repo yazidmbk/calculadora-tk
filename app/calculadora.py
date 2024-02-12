@@ -54,6 +54,7 @@ class Calculadora(object):
         self.master.title('Calculadora Tk')
         self.master.maxsize(width=335, height=415)
         self.master.minsize(width=335, height=415)
+        self.master.minsize(width=335, height=415)
         self.master.geometry('-150+100')
         self.master['bg'] = self.theme['master_bg']
 
@@ -116,9 +117,13 @@ class Calculadora(object):
         #Configuração
         calc_menu.add_cascade(label='Configuração', menu=config)
         config.add_cascade(label='Tema', menu=theme)
-
+        config.add_cascade(label='Language', menu=theme)
         config.add_separator()
         config.add_command(label='Sair', command=self._exit)
+
+
+
+
 
     def _change_theme_to(self, name='Dark'):
         self.settings['current_theme'] = name
