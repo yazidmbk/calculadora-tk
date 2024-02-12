@@ -22,6 +22,11 @@ from .calculador import Calculador
 
 
 class Calculadora(object):
+    LANG = {
+        "pt": {"exit": "Sair", "Config": "Configuraçaõ","Title": "Calculadora Tk","Them": "Tema", "Language": "Linguagem"},
+        "fr": {"exit": "Sortir","Config": "Configuration","Title": "Calculatrice Tk","Them": "Theme", "Language": "Langue"},
+        "en": {"exit": "Exit", "Config": "Setting", "Title": "Calculator Tk","Them": "Theme", "Language": "Language"},
+    }
     """Classe para criação do layout da calculadora, distribuição dos botões
     e a adição de suas funcionalidades.
 
@@ -38,10 +43,10 @@ class Calculadora(object):
              e selecionar uma de suas classes de estilo.
     """
 
-    def __init__(self, master):
+    def __init__(self, master, lang="pt"):
         self.master = master
         self.calc = Calculador()
-
+        self.lang = Calculadora.LANG[lang]
         self.settings = self._load_settings()
         
         # Define estilo padrão para macOS, caso seja o sistema operacional utilizado
@@ -51,7 +56,7 @@ class Calculadora(object):
             self.theme = self._get_theme(self.settings['current_theme'])
 
         # Edição da Top-Level
-        self.master.title('Calculadora Tk')
+        self.master.title(self.lang["Title"])
         self.master.maxsize(width=335, height=415)
         self.master.minsize(width=335, height=415)
         self.master.minsize(width=335, height=415)
@@ -115,11 +120,16 @@ class Calculadora(object):
             else:
                 theme.add_command(label=name, command=partial(self._change_theme_to, name))
         #Configuração
-        calc_menu.add_cascade(label='Configuração', menu=config)
-        config.add_cascade(label='Tema', menu=theme)
-        config.add_cascade(label='Language', menu=theme)
+        calc_menu.add_cascade(label=self.lang["Config"], menu=config)
+        config.add_cascade(label=self.lang["Them"], menu=theme)
+        lang_menu = Menu(calc_menu)
+        lang_menu.add_command(label="Francais", command=self._fr)
+        lang_menu.add_command(label="Portuguais", command=self._pt)
+        lang_menu.add_command(label="Anglais", command=self._en)
+        config.add_cascade(label=self.lang["Language"], menu=lang_menu)
         config.add_separator()
-        config.add_command(label='Sair', command=self._exit)
+        config.add_command(label=self.lang["exit"], command=self._exit)
+
 
 
 
@@ -344,6 +354,15 @@ class Calculadora(object):
         """Reinicia o aplicativo."""
         python = sys.executable  # Recupera o path do executável do python
         os.execl(python, python, * sys.argv)
+
+    def _fr(self):
+        self.__init__(self.master, "fr")
+
+    def _pt(self):
+        self.__init__(self.master, "pt")
+        
+    def _en(self):
+        self.__init__(self.master, "en")
 
     def _exit(self):
         exit()
