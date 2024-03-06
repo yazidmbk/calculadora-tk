@@ -20,6 +20,8 @@ from copy import deepcopy
 # Módulos próprios
 from .calculador import Calculador
 
+if __name__ == "__main__":
+    from app import calculadora
 
 class Calculadora(object):
     LANG = {
