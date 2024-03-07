@@ -54,3 +54,5 @@ def test_get_data_in_input(app):
 def test_change_theme_to(app):
     app._change_theme_to("Dark")
     assert app.settings['current_theme'] == "Dark"
+
+
